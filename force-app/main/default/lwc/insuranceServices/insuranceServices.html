@@ -1,0 +1,164 @@
+<template>
+    <!-- SERVICES SECTION -->
+    <section class="services-section">
+        <h2 class="section-title">Our Services</h2>
+        
+        <div class="services-grid">
+            <!-- Our Agencies -->
+            <article class="service-card" onclick={handleAgencesClick}>
+                <div class="service-icon-wrapper">
+                    <lightning-icon 
+                        icon-name="standard:location" 
+                        size="large"
+                        class="service-icon">
+                    </lightning-icon>
+                </div>
+                <h3 class="service-title">Our Agencies</h3>
+                <p class="service-description">
+                    Find the agency closest to you
+                </p>
+                <span class="service-link">
+                    Discover
+                    <lightning-icon 
+                        icon-name="utility:forward" 
+                        size="xx-small">
+                    </lightning-icon>
+                </span>
+            </article>
+
+            <!-- Authorized Garages -->
+            <article class="service-card" onclick={handleGaragesClick}>
+                <div class="service-icon-wrapper">
+                    <lightning-icon 
+                        icon-name="standard:maintenance_plan" 
+                        size="large"
+                        class="service-icon">
+                    </lightning-icon>
+                </div>
+                <h3 class="service-title">Authorized Garages</h3>
+                <p class="service-description">
+                    Network of certified partner garages
+                </p>
+                <span class="service-link">
+                    Discover
+                    <lightning-icon 
+                        icon-name="utility:forward" 
+                        size="xx-small">
+                    </lightning-icon>
+                </span>
+            </article>
+
+            <!-- Partner Clinics -->
+            <article class="service-card" onclick={handleCliniquesClick}>
+                <div class="service-icon-wrapper">
+                    <lightning-icon 
+                        icon-name="standard:medication_reconciliation" 
+                        size="large"
+                        class="service-icon">
+                    </lightning-icon>
+                </div>
+                <h3 class="service-title">Partner Clinics</h3>
+                <p class="service-description">
+                    Access to our partner medical network
+                </p>
+                <span class="service-link">
+                    Discover
+                    <lightning-icon 
+                        icon-name="utility:forward" 
+                        size="xx-small">
+                    </lightning-icon>
+                </span>
+            </article>
+
+            <!-- Auto Assistance -->
+            <article class="service-card service-card-highlight" onclick={handleAssistanceClick}>
+                <div class="service-icon-wrapper">
+                    <lightning-icon 
+                        icon-name="standard:service_crew" 
+                        size="large"
+                        class="service-icon">
+                    </lightning-icon>
+                </div>
+                <h3 class="service-title">Auto Assistance</h3>
+                <p class="service-description">
+                    Emergency service available 24/7
+                </p>
+                <div class="assistance-phone">
+                    <lightning-icon 
+                        icon-name="utility:phone_portrait" 
+                        size="small"
+                        class="phone-icon">
+                    </lightning-icon>
+                    <span class="phone-number">29 92</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- NEWS SECTION -->
+    <section class="news-section">
+        <div class="news-header">
+            <h2 class="news-title">Latest News & Updates</h2>
+            <button class="view-all-btn" onclick={handleViewAllNews}>
+                View All News
+                <lightning-icon 
+                    icon-name="utility:forward" 
+                    size="xx-small">
+                </lightning-icon>
+            </button>
+        </div>
+
+        <template if:true={hasNews}>
+            <div class="news-grid">
+                <template for:each={newsArticles} for:item="article">
+                    <article 
+                        key={article.id} 
+                        class="news-card" 
+                        data-id={article.id}
+                        onclick={handleNewsClick}>
+                        
+                        <div class="news-image-wrapper">
+                            <img 
+                                src={article.imageUrl} 
+                                alt={article.title} 
+                                class="news-image"
+                            />
+                            <span class="news-category-badge">{article.category}</span>
+                            <div class="news-date-badge">
+                                <lightning-icon 
+                                    icon-name="utility:event" 
+                                    size="xx-small">
+                                </lightning-icon>
+                                <span>{article.date}</span>
+                            </div>
+                        </div>
+
+                        <div class="news-content">
+                            <h3 class="news-card-title">{article.title}</h3>
+                            <p class="news-excerpt">{article.excerpt}</p>
+                            <span class="read-more">
+                                Read More
+                                <lightning-icon 
+                                    icon-name="utility:forward" 
+                                    size="xx-small">
+                                </lightning-icon>
+                            </span>
+                        </div>
+                    </article>
+                </template>
+            </div>
+        </template>
+
+        <template if:false={hasNews}>
+            <div class="news-empty">
+                <div class="news-empty-icon">
+                    <lightning-icon 
+                        icon-name="standard:news" 
+                        size="large">
+                    </lightning-icon>
+                </div>
+                <p class="news-empty-text">No news available at the moment</p>
+            </div>
+        </template>
+    </section>
+</template>
